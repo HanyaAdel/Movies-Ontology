@@ -35,6 +35,16 @@ def home_page():
                            namespaces=NAMESPACES,
                            form=SPARQLform())
 
+@app.route("/jena1", methods=["GET"])
+def jena1():
+    query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
+SELECT ?actor_name 
+WHERE { 
+  ?actor rdf:type :Actor. 
+  ?actor rdfs:label ?actor_name. 
+} """
+    return run_query(query=query, template="jena1.html")
+
 
 @app.route("/", methods=["POST"])
 def result_page():
@@ -52,6 +62,20 @@ def result_page():
             flash(err)
         return home_page()
     query = request.form.get('query')
+    return run_query(query=query, template="home.html")
+    # try:
+    #     results = graph.query(query)
+    # except Exception as e:
+    #     flash("Could not run that query.")
+    #     flash("RDFLIB Error: {}".format(e))
+    #     sparql_validate(query)
+    #     return home_page()
+    # return render_template("result.html",
+    #                        namespaces=NAMESPACES,
+    #                        form=SPARQLform(),
+    #                        results=results)
+
+def run_query(query, template):
     try:
         results = graph.query(query)
     except Exception as e:
@@ -60,10 +84,10 @@ def result_page():
         sparql_validate(query)
         return home_page()
     return render_template("result.html",
+                           base_template=template,
                            namespaces=NAMESPACES,
                            form=SPARQLform(),
                            results=results)
-
 
 def sparql_validate(query):
     prefix = "PREFIX {}: <{}>".format

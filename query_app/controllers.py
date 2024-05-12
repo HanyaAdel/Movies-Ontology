@@ -61,8 +61,8 @@ def jena2():
     query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
 SELECT ?person_name 
 WHERE { 
-  ?actor rdf:type :Person. 
-  ?actor rdfs:label ?person_name. 
+  ?person rdf:type :Person. 
+  ?person rdfs:label ?person_name. 
 } """
     return run_query(query=query, template="jena2.html")
 
@@ -76,7 +76,7 @@ def jena3():
     persons = set(graph.subjects(RDF.type, onto.Person))
 
     # Convert set to rdflib.query.Result
-    vars = ['person', 'label']  # Define the variables used in the Result
+    vars = ['person', 'name']  # Define the variables used in the Result
     bindings = []
 
     for person in persons:
@@ -88,13 +88,13 @@ def jena3():
             label = "No label found"
 
         # Add each actor URI and label to the bindings
-        bindings.append({'person': person, 'label': label})
+        bindings.append({'person': person, 'name': label})
 
     # Create a Result object with SELECT type
     result = Result('SELECT')
     result.vars = vars
     result.bindings = bindings
-    
+
     return show_result(results=result, template="jena3.html")
 
 

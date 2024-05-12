@@ -7,12 +7,15 @@ from itertools import chain
 
 from bs4 import BeautifulSoup
 from flask import render_template, request, flash
+import rdflib
 from requests import post, codes
 
 from .forms import SPARQLform
 from .flask_app import app
 from .models import Graph, NAMESPACES
-
+from config import RDF_DIR
+from rdflib.namespace import  RDF, RDFS
+from rdflib.query import Result
 
 graph = Graph()
 
@@ -37,13 +40,30 @@ def home_page():
 
 @app.route("/jena1", methods=["GET"])
 def jena1():
+    person_type_uri = rdflib.URIRef("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person")
+
+    results_list = []
+    # Iterate through the graph to find all subjects of type Movie
+    for subject in graph.subjects(RDF.type, person_type_uri):
+        # For each subject that is a movie, find its label (title)
+        print("subject:", subject)
+        for label in graph.objects(subject, RDFS.label):
+            results_list.append((subject, label))
+            print("label:", label)
+    results = Result('SELECT')
+    results.vars = ['person', 'name']  # Define the variable names used in the results
+    results.bindings = [{'person': s, 'name': l} for s, l in results_list]
+    return show_result(results=results_list, template="jena1.html")
+
+@app.route("/jena2", methods=["GET"])
+def jena2():
     query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
-SELECT ?actor_name 
+SELECT ?person_name 
 WHERE { 
-  ?actor rdf:type :Actor. 
-  ?actor rdfs:label ?actor_name. 
+  ?actor rdf:type :Person. 
+  ?actor rdfs:label ?person_name. 
 } """
-    return run_query(query=query, template="jena1.html")
+    return run_query(query=query, template="jena2.html")
 
 
 @app.route("/", methods=["POST"])
@@ -75,6 +95,13 @@ def result_page():
     #                        form=SPARQLform(),
     #                        results=results)
 
+def show_result(results, template):
+    return render_template("result.html",
+                           base_template=template,
+                           namespaces=NAMESPACES,
+                           form=SPARQLform(),
+                           results=results)
+
 def run_query(query, template):
     try:
         results = graph.query(query)
@@ -83,11 +110,7 @@ def run_query(query, template):
         flash("RDFLIB Error: {}".format(e))
         sparql_validate(query)
         return home_page()
-    return render_template("result.html",
-                           base_template=template,
-                           namespaces=NAMESPACES,
-                           form=SPARQLform(),
-                           results=results)
+    return show_result(results=results, template=template)
 
 def sparql_validate(query):
     prefix = "PREFIX {}: <{}>".format

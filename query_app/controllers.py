@@ -16,7 +16,8 @@ from .models import Graph, NAMESPACES
 from config import RDF_DIR
 from rdflib.namespace import  RDF, RDFS
 from rdflib.query import Result
-
+import owlrl
+from owlrl import DeductiveClosure
 graph = Graph()
 
 
@@ -64,6 +65,37 @@ WHERE {
   ?actor rdfs:label ?person_name. 
 } """
     return run_query(query=query, template="jena2.html")
+
+@app.route("/jena3", methods=["GET"])
+def jena3():
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+
+    persons = set(graph.subjects(RDF.type, onto.Person))
+
+    # Convert set to rdflib.query.Result
+    vars = ['person', 'label']  # Define the variables used in the Result
+    bindings = []
+
+    for person in persons:
+        # Query for the label of each actor
+        person_label = list(graph.objects(person, RDFS.label))
+        if person_label:
+            label = person_label[0]  # Assuming there's at least one label, and taking the first
+        else:
+            label = "No label found"
+
+        # Add each actor URI and label to the bindings
+        bindings.append({'person': person, 'label': label})
+
+    # Create a Result object with SELECT type
+    result = Result('SELECT')
+    result.vars = vars
+    result.bindings = bindings
+    
+    return show_result(results=result, template="jena3.html")
 
 
 @app.route("/", methods=["POST"])

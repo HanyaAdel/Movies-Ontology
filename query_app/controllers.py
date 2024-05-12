@@ -98,53 +98,6 @@ def jena3():
 
     return show_result(results=result, template="jena3.html")
 
-@app.route("/jena4", methods=["GET"])
-def jena4():
-    """Render the home page."""
-    return render_template("jena4.html",
-                           namespaces=NAMESPACES,
-                           form=SPARQLform())
-
-@app.route("/jena4", methods=["POST"])
-def result_page():
-    """Render the query result."""
-    form = SPARQLform()
-    if not form.validate_on_submit():
-        errors = chain.from_iterable(
-            (
-                map(partial("{}. {}".format, field.title()), errs) for
-                field, errs in form.errors.items()
-            )
-        )
-        flash("Please enter a movie name")
-        for err in errors:
-            flash(err)
-        return home_page()
-    # movie name 
-    movie_name = request.form.get('query')
-
-    query = movie_query (movie_name)
-    
-    return run_query(query=movie_name, template="jena4.html")
-    # try:
-    #     results = graph.query(query)
-    # except Exception as e:
-    #     flash("Could not run that query.")
-    #     flash("RDFLIB Error: {}".format(e))
-    #     sparql_validate(query)
-    #     return home_page()
-    # return render_template("result.html",
-    #                        namespaces=NAMESPACES,
-    #                        form=SPARQLform(),
-    #                        results=results)
-
-def movie_query(movie):
-    # a query 
-
-    query = """
-
-"""
-
 def getIndividuals(individualsClass):
     owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
     DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)

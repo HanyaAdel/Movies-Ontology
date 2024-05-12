@@ -8,6 +8,7 @@ from itertools import chain
 from bs4 import BeautifulSoup
 from flask import render_template, request, flash
 import rdflib
+import rdflib.term
 from requests import post, codes
 
 from .forms import SPARQLform
@@ -97,6 +98,111 @@ def jena3():
 
     return show_result(results=result, template="jena3.html")
 
+
+def getIndividuals(individualsClass):
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+    individuals = set(graph.subjects(RDF.type, individualsClass))
+    result = []
+    for individual in individuals:
+        # Query for the label of each actor
+        individual_label = list(graph.objects(individual, RDFS.label))
+        if individual_label:
+            label = individual_label[0]  # Assuming there's at least one label, and taking the first
+        else:
+            label = "No label found"
+
+        result.append({'inidividual': individual, 'label': label})
+    
+    return result
+
+@app.route("/jena7", methods=["GET"])
+def jena7():
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    directors = getIndividuals(onto.Director)
+    actors = getIndividuals(onto.Actor)
+    genre = getIndividuals(onto.Genre)
+
+    print(actors)
+
+    #TODO display those lists in the UI
+
+    return show_result(results=[], template="jena3.html") #TODO new template needed
+
+@app.route("/jena8", methods=["GET"])
+def jena7Results():
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    actors = {
+        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx')],
+        "exclude":[]
+    }
+    directors = {
+        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx')],
+        "exclude":[]
+    }
+    genres = {
+        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb')],
+        "exclude":[rdflib.term.URIRef('http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg')]
+    }
+
+    actors_include_list = " ".join([f"<{individual}>" for individual in actors["include"]])
+    actors_exclude_list = " ".join([f"<{individual}>" for individual in actors["exclude"]])
+    directors_include_list = " ".join([f"<{individual}>" for individual in directors["include"]])
+    directors_exclude_list = " ".join([f"<{individual}>" for individual in directors["exclude"]])
+    genres_include_list = " ".join([f"<{individual}>" for individual in genres["include"]])
+    genres_exclude_list = " ".join([f"<{individual}>" for individual in genres["exclude"]])
+    query = f"""
+    prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+    SELECT 
+        ?show_name
+        (GROUP_CONCAT(DISTINCT(?actor_name); separator=", ") AS ?actors)
+        (?director_name as ?director)
+        (GROUP_CONCAT(DISTINCT(?genre_name); separator=", ") AS ?genres)
+    WHERE {{
+        ?show rdf:type :Show.
+
+        ?show :hasActor ?actor.
+        ?show :hasDirector ?director.
+        ?show :hasGenre ?genre.
+
+        ?show rdfs:label ?show_name.
+        ?actor :Name ?actor_name.
+        ?director :Name ?director_name.
+        ?genre rdfs:label ?genre_name.
+
+        FILTER EXISTS {{
+            ?show :hasActor ?included_actor.
+            FILTER (?included_actor IN({actors_include_list})).
+        }}
+        FILTER EXISTS {{
+            ?show :hasDirector ?included_director.
+            FILTER (?included_director IN({directors_include_list})).
+        }}
+        FILTER EXISTS {{
+            ?show :hasGenre ?included_genre.
+            FILTER (?included_genre IN({genres_include_list})).
+        }}
+        FILTER NOT EXISTS {{
+            ?show :hasActor ?excluded_actor.
+            FILTER (?excluded_actor IN ({actors_exclude_list})).
+        }}
+        FILTER NOT EXISTS {{
+            ?show :hasDirector ?excluded_director.
+            FILTER (?excluded_director IN ({directors_exclude_list})).
+        }}
+        FILTER NOT EXISTS {{
+            ?show :hasGenre ?excluded_genre.
+            FILTER (?excluded_genre IN ({genres_exclude_list})).
+        }}
+    }}
+    GROUP BY ?show_name
+    """
+
+    return run_query(query=query, template="jena3.html")
 
 @app.route("/", methods=["POST"])
 def result_page():

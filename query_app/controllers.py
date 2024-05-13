@@ -99,19 +99,101 @@ def jena3():
 
     return show_result(results=result, template="jena3.html")
 
-@app.route("/jena6", methods=["GET"])
-def jena6():
+@app.route("/jena6_1", methods=["GET"])
+def jena6_1():
     owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
     onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
-    # Define a rule that identifies movies in English and produced in the USA
-    graph.add((onto.EnglishUSAMovies, RDF.type, OWL.Class))
-    graph.add((onto.EnglishUSAMovies, OWL.intersectionOf, RDF.type, RDF.List))
-    graph.add((onto.EnglishUSAMovies, OWL.onProperty, onto.Language))
-    graph.add((onto.EnglishUSAMovies, OWL.hasValue, onto.English))
-    graph.add((onto.EnglishUSAMovies, OWL.onProperty, onto.Country))
-    graph.add((onto.EnglishUSAMovies, OWL.hasValue, onto.USA))
+
+    # Rule 1: ActorDirector
+    graph.add((onto.ActorDirector, RDF.type, OWL.Class))
+    graph.add((onto.ActorDirector, RDFS.subClassOf, onto.Person))
+    graph.add((onto.ActorDirector, OWL.equivalentClass, rdflib.BNode()))
+    graph.add((onto.ActorDirector, RDF.type, OWL.Restriction))
+    graph.add((onto.ActorDirector, OWL.onProperty, onto.isActor))
+    graph.add((onto.ActorDirector, OWL.hasValue, rdflib.Literal(True)))
+    graph.add((onto.ActorDirector, RDF.type, OWL.Restriction))
+    graph.add((onto.ActorDirector, OWL.onProperty, onto.isDirector))
+    graph.add((onto.ActorDirector, OWL.hasValue, rdflib.Literal(True)))
+
+    # Process each person and check if they are both an actor and a director
+    for person in graph.subjects(RDF.type, onto.Person):
+        is_actor = (person, onto.isActor, rdflib.Literal(True)) in graph
+        is_director = (person, onto.isDirector, rdflib.Literal(True)) in graph
+        if is_actor and is_director:
+            graph.add((person, RDF.type, onto.ActorDirector))
+
+    # Apply reasoning
+    owlrl.DeductiveClosure(owlrl.OWLRL_Semantics, datatype_axioms=False).expand(graph)
+
+    query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
+SELECT ?person_name 
+WHERE { 
+  ?person rdf:type :ActorDirector. 
+  ?person rdfs:label ?person_name. 
+} """
+    return run_query(query=query, template="jena6_1.html")
+
+@app.route("/jena6_2", methods=["GET"])
+def jena6_2():
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+
+    #Rule 2: MultiGenreMovies
+    graph.add((onto.hasMultipleGenres, RDF.type, OWL.DatatypeProperty))
+    graph.add((onto.MultiGenreMovies, RDF.type, OWL.Class))
+    graph.add((onto.MultiGenreMovies, RDFS.subClassOf, onto.Movie))
+    graph.add((onto.MultiGenreMovies, OWL.equivalentClass, rdflib.BNode()))
+    graph.add((onto.MultiGenreMovies, RDF.type, OWL.Restriction))
+    graph.add((onto.MultiGenreMovies, OWL.onProperty, onto.hasMultipleGenres))
+    graph.add((onto.MultiGenreMovies, OWL.hasValue, rdflib.Literal(True)))
+
+        # Preprocess and mark multi-genre movies
+    for movie in graph.subjects(RDF.type, onto.Movie):
+        genres = set(graph.objects(movie, onto.hasGenre))
+        if len(genres) > 1:
+            graph.add((movie, onto.hasMultipleGenres, rdflib.Literal(True)))
 
     DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
+SELECT ?movie_name 
+WHERE { 
+  ?movie rdf:type :MultiGenreMovies. 
+  ?movie rdfs:label ?movie_name. 
+} """
+    return run_query(query=query, template="jena6_2.html")
+
+@app.route("/jena6_3", methods=["GET"])
+def jena6_3():
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+
+    #Rule 3: Old Movies
+    graph.add((onto.isOld, RDF.type, OWL.DatatypeProperty))
+    graph.add((onto.OldMovies, RDF.type, OWL.Class))
+    graph.add((onto.OldMovies, RDFS.subClassOf, onto.Movie))
+    graph.add((onto.OldMovies, OWL.equivalentClass, rdflib.BNode()))
+    graph.add((onto.OldMovies, RDF.type, OWL.Restriction))
+    graph.add((onto.OldMovies, OWL.onProperty, onto.isOld))
+    graph.add((onto.OldMovies, OWL.hasValue, rdflib.Literal(True)))
+
+    # Process each movie and check its release year
+    for movie in graph.subjects(RDF.type, onto.Movie):
+        release_year = graph.value(movie, onto.Year)
+        if release_year and int(release_year) < 2000:
+            graph.add((movie, onto.isOld, rdflib.Literal(True)))
+        else:
+            graph.add((movie, onto.isOld, rdflib.Literal(False)))
+
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
+SELECT ?movie_name 
+WHERE { 
+  ?movie rdf:type :OldMovies. 
+  ?movie rdfs:label ?movie_name. 
+} """
+    return run_query(query=query, template="jena6_3.html")
 
     
 

@@ -200,7 +200,7 @@ WHERE {
 
 @app.route("/jena4", methods=["GET"])
 def jena4():
-    """Render the home page."""
+    """Render the jena4 page."""
     return render_template("jena4.html",
                            namespaces=NAMESPACES,
                            form=Movieform())
@@ -253,6 +253,45 @@ def movie_page():
                         namespaces=NAMESPACES,
                         form=Movieform(),
                         results=results)
+
+@app.route("/jena5", methods=["GET"])
+def jena5():
+
+    global graph
+
+    # Load the OWL rule file
+    rule_file = "rdf/rules.ttl"
+    rule_graph = Graph()
+    rule_graph.parse(rule_file, format="ttl")
+
+    # Print the content of the rule graph before merging
+    print("Rule Graph Content Before Merging:")
+    print(rule_graph.serialize(format="turtle"))
+
+    # Merge the rule graph with the main graph
+    graph = graph + rule_graph
+
+    # Apply OWL reasoning
+    owlrl.OWLRL_Semantics(graph, axioms=True, daxioms=True)
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    # Query to find individuals who are both actors and directors
+    query = """
+    PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+    SELECT DISTINCT ?person_name
+    WHERE {
+        ?person rdf:type :ActorDirector ;
+                rdfs:label ?person_name .
+    }
+    """
+    try:
+        results = graph.query(query)
+    except Exception as e:
+        flash("Could not run that query.")
+        flash("RDFLIB Error: {}".format(e))
+        sparql_validate(query)
+        return jena5()
+    return show_result(results=results, template="jena5.html")
 
 def getIndividuals(individualsClass):
     owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)

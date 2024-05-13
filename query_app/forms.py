@@ -10,5 +10,7 @@ from wtforms.validators import DataRequired
 
 class SPARQLform(FlaskForm):
     """Form to accept SPARQL query."""
-
     query = TextAreaField('Query', validators=[DataRequired()])
+    
+class Movieform(FlaskForm):
+    movie = TextAreaField('Movie  Name:', validators=[DataRequired()])

@@ -364,8 +364,8 @@ def jena7Results():
         ?show :hasGenre ?genre.
 
         ?show rdfs:label ?show_name.
-        ?actor :Name ?actor_name.
-        ?director :Name ?director_name.
+        ?actor rdfs:label ?actor_name.
+        ?director rdfs:label ?director_name.
         ?genre rdfs:label ?genre_name.
 
         FILTER EXISTS {{

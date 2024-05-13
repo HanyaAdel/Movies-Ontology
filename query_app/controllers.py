@@ -17,6 +17,7 @@ from .models import Graph, NAMESPACES
 from config import RDF_DIR
 from rdflib.namespace import  RDF, RDFS
 from rdflib.query import Result
+from rdflib import OWL
 import owlrl
 from owlrl import DeductiveClosure
 graph = Graph()
@@ -97,6 +98,23 @@ def jena3():
     result.bindings = bindings
 
     return show_result(results=result, template="jena3.html")
+
+@app.route("/jena6", methods=["GET"])
+def jena6():
+    owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+    # Define a rule that identifies movies in English and produced in the USA
+    graph.add((onto.EnglishUSAMovies, RDF.type, OWL.Class))
+    graph.add((onto.EnglishUSAMovies, OWL.intersectionOf, RDF.type, RDF.List))
+    graph.add((onto.EnglishUSAMovies, OWL.onProperty, onto.Language))
+    graph.add((onto.EnglishUSAMovies, OWL.hasValue, onto.English))
+    graph.add((onto.EnglishUSAMovies, OWL.onProperty, onto.Country))
+    graph.add((onto.EnglishUSAMovies, OWL.hasValue, onto.USA))
+
+    DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
+
+    
+
 
 @app.route("/jena4", methods=["GET"])
 def jena4():

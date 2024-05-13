@@ -1,0 +1,39 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link href="{{ url_for('static', filename='css/blog.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+Jena5
+{% endblock %}
+
+{% block content %}
+{% include "includes/flashmodal.html" %}
+<div class="container">
+    <div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">Jena 4</h1>
+        <p class="lead blog-description">Displays  all persons 
+            that are actors and directors.  </p>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% include "includes/footer.html" %}
+{{ super () }}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#errorModal').modal('show');
+    });
+</script>
+{% endif %}
+{% endwith %}
+{% endblock %}

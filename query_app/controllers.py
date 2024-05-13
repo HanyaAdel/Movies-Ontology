@@ -104,23 +104,23 @@ def jena6_1():
     owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
     onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
 
-    # Rule 1: ActorDirector
-    graph.add((onto.ActorDirector, RDF.type, OWL.Class))
-    graph.add((onto.ActorDirector, RDFS.subClassOf, onto.Person))
+    # Rule 1: WriterDirector
+    graph.add((onto.WriterDirector, RDF.type, OWL.Class))
+    graph.add((onto.WriterDirector, RDFS.subClassOf, onto.Person))
 
     # Create a blank node for intersection and ensure the intersection is properly constructed
     intersection = rdflib.BNode()
-    list_actor = rdflib.BNode()
+    list_writer = rdflib.BNode()
     list_director = rdflib.BNode()
 
     graph.add((intersection, RDF.type, OWL.Class))
-    graph.add((intersection, OWL.intersectionOf, list_actor))
-    graph.add((list_actor, RDF.first, onto.Actor))
-    graph.add((list_actor, RDF.rest, list_director))
+    graph.add((intersection, OWL.intersectionOf, list_writer))
+    graph.add((list_writer, RDF.first, onto.Writer))
+    graph.add((list_writer, RDF.rest, list_director))
     graph.add((list_director, RDF.first, onto.Director))
     graph.add((list_director, RDF.rest, RDF.nil))
 
-    graph.add((onto.ActorDirector, OWL.equivalentClass, intersection))
+    graph.add((onto.WriterDirector, OWL.equivalentClass, intersection))
 
     # Apply reasoning
     owlrl.DeductiveClosure(owlrl.OWLRL_Semantics, datatype_axioms=False).expand(graph)
@@ -128,7 +128,7 @@ def jena6_1():
     query = """prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>  
 SELECT ?person_name 
 WHERE { 
-  ?person rdf:type :ActorDirector. 
+  ?person rdf:type :WriterDirector. 
   ?person rdfs:label ?person_name. 
 } """
     return run_query(query=query, template="jena6_1.html")

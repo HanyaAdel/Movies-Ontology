@@ -98,6 +98,62 @@ def jena3():
 
     return show_result(results=result, template="jena3.html")
 
+@app.route("/jena4", methods=["GET"])
+def jena4():
+    """Render the home page."""
+    return render_template("jena4.html",
+                           namespaces=NAMESPACES,
+                           form=Movieform())
+
+@app.route("/jena4", methods=["POST"])
+def movie_page():
+    """Render the query result."""
+    form = Movieform()
+    if not form.validate_on_submit():
+        errors = chain.from_iterable(
+            (
+                map(partial("{}. {}".format, field.title()), errs) for
+                field, errs in form.errors.items()
+            )
+        )
+        flash("Invalid Query")
+        for err in errors:
+            flash(err)
+        return jena4()
+    
+    movie = request.form.get('movie')
+        
+    query = f"""PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+
+    SELECT ?year ?country (GROUP_CONCAT(DISTINCT ?genre_name; SEPARATOR=", ") AS ?genres) (GROUP_CONCAT(DISTINCT ?actor_name; SEPARATOR=", ") AS ?actors)
+    WHERE {{
+      ?movie rdf:type :Movie.
+      ?movie rdfs:label "{movie}".
+      OPTIONAL {{ ?movie :Year ?year .}}
+      OPTIONAL {{ ?movie :Country ?country }}
+      OPTIONAL {{ ?movie :hasGenre ?genre }}
+      OPTIONAL {{ ?actor :isActorOf ?movie }}
+      OPTIONAL {{ ?genre rdfs:label ?genre_name }}
+      OPTIONAL {{ ?actor rdfs:label ?actor_name }}
+    }}"""
+
+    try:
+        results = graph.query(query)
+        if any(binding["genres"].value == "" for binding in results.bindings):
+            flash(f"No information found for the movie '{movie}'")
+            return jena4()
+    except Exception as e:
+        flash("Could not run that query.")
+        flash("RDFLIB Error: {}".format(e))
+        sparql_validate(query)
+        return jena4()
+    
+    return render_template("result.html",
+                        base_template="jena4.html", 
+                        namespaces=NAMESPACES,
+                        form=Movieform(),
+                        results=results)
+
 def getIndividuals(individualsClass):
     owlrl.OWLRL_Semantics(graph,axioms=True, daxioms=True)
     DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
@@ -221,65 +277,6 @@ def result_page():
     query = request.form.get('query')
 
     return run_query(query=query, template="home.html")
-
-
-@app.route("/jena4", methods=["POST"])
-def movie_page():
-    """Render the query result."""
-    form = Movieform()
-    if not form.validate_on_submit():
-        errors = chain.from_iterable(
-            (
-                map(partial("{}. {}".format, field.title()), errs) for
-                field, errs in form.errors.items()
-            )
-        )
-        flash("Invalid Query")
-        for err in errors:
-            flash(err)
-        return jena4()
-    
-    movie = request.form.get('movie')
-        
-    query = f"""PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
-
-    SELECT ?year ?country (GROUP_CONCAT(DISTINCT ?genre_name; SEPARATOR=", ") AS ?genres) (GROUP_CONCAT(DISTINCT ?actor_name; SEPARATOR=", ") AS ?actors)
-    WHERE {{
-      ?movie rdf:type :Movie.
-      ?movie rdfs:label "{movie}".
-      OPTIONAL {{ ?movie :Year ?year .}}
-      OPTIONAL {{ ?movie :Country ?country }}
-      OPTIONAL {{ ?movie :hasGenre ?genre }}
-      OPTIONAL {{ ?actor :isActorOf ?movie }}
-      OPTIONAL {{ ?genre rdfs:label ?genre_name }}
-      OPTIONAL {{ ?actor rdfs:label ?actor_name }}
-    }}"""
-
-    try:
-        results = graph.query(query)
-        if any(binding["genres"].value == "" for binding in results.bindings):
-            flash(f"No information found for the movie '{movie}'")
-            return jena4()
-    except Exception as e:
-        flash("Could not run that query.")
-        flash("RDFLIB Error: {}".format(e))
-        sparql_validate(query)
-        return jena4()
-    
-    return render_template("result.html",
-                        base_template="jena4.html", 
-                        namespaces=NAMESPACES,
-                        form=Movieform(),
-                        results=results)
-
-
-
-@app.route("/jena4", methods=["GET"])
-def jena4():
-    """Render the home page."""
-    return render_template("jena4.html",
-                           namespaces=NAMESPACES,
-                           form=Movieform())
 
 def show_result(results, template):
     return render_template("result.html",

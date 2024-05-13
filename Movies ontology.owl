@@ -1,0 +1,768 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/moham/ontologies/2024/4/untitled-ontology-6#"
+     xml:base="http://www.semanticweb.org/moham/ontologies/2024/4/untitled-ontology-6"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-6="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/moham/ontologies/2024/4/untitled-ontology-6"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasActor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasActor">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isActorOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasAward -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasAward">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Award"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasDirector -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasDirector">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isDirectorOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasGenre -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasGenre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasProducer -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasProducer">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isProducerOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Producer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasWriter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasWriter">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isWriterOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isActorOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isActorOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isDirectorOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isDirectorOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isProducerOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isProducerOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isWriterOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isWriterOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/released -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/released">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/releasedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/releasedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/releasedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Studio"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Age -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Age">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Country -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Country">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Gender -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Gender">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Language -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Language">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Nationality -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Nationality">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Title">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Year -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Year">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isActorOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Award -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Award"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isDirectorOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasAward"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/MoviesAward"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Series"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/MoviesAward -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/MoviesAward">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Award"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/SeriesAward"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Producer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Producer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isProducerOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Series -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Series">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/hasAward"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/SeriesAward"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/SeriesAward -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/SeriesAward">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Award"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Studio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Studio"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/isWriterOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R0V2rPVJylhI8GsX1IfCoM -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R0V2rPVJylhI8GsX1IfCoM">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:Title>There Will Be Blood</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2007</untitled-ontology-6:Year>
+        <rdfs:label>There Will Be Blood</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Comedy</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R71kRk1w9dUBG6gKVsWZ5hO -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R71kRk1w9dUBG6gKVsWZ5hO">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBnAjTZPO6EHgAoS3lfhJD9"/>
+        <untitled-ontology-6:Title>Thor: Ragnarok</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2017</untitled-ontology-6:Year>
+        <rdfs:label>Thor: Ragnarok</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7O04ZZPlCUoSMRqYNnyQpc -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7O04ZZPlCUoSMRqYNnyQpc">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/R7k2xNdVZGGoAeQM4QcOvNg"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">55</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Female</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Gillian Anderson</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>Gillian Anderson</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7k2xNdVZGGoAeQM4QcOvNg -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7k2xNdVZGGoAeQM4QcOvNg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Series"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R7O04ZZPlCUoSMRqYNnyQpc"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/R8nioE4as26no3kqva95twQ"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R8eAoGhSyW88OdjUeBjQH9c"/>
+        <untitled-ontology-6:Title>The X files</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1993</untitled-ontology-6:Year>
+        <rdfs:label>The X files</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8QEZysOq4M0ahGnHCvzNA3 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8QEZysOq4M0ahGnHCvzNA3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">43</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Female</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Uma Thurman</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>Uma Thurman</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/R71kRk1w9dUBG6gKVsWZ5hO"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RDcLrEroiG4hFTU0qdf45up"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/R71kRk1w9dUBG6gKVsWZ5hO"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/RDcLrEroiG4hFTU0qdf45up"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">47</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Taika Waititi</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/New_Zealanders</untitled-ontology-6:Nationality>
+        <rdfs:label>Taika Waititi</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8atostOMRkOOicZ5bq88BF -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8atostOMRkOOicZ5bq88BF">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R8eAoGhSyW88OdjUeBjQH9c"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z"/>
+        <untitled-ontology-6:Title>Boogie Nights</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1997</untitled-ontology-6:Year>
+        <rdfs:label>Boogie Nights</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8eAoGhSyW88OdjUeBjQH9c -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8eAoGhSyW88OdjUeBjQH9c">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Drama</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">53</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Quentin Tarantino</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>Quentin Tarantino</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8nioE4as26no3kqva95twQ -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8nioE4as26no3kqva95twQ">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/R7k2xNdVZGGoAeQM4QcOvNg"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">67</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Chris Carter</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>Chris Carter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9MiIoEh2KmYMHG9ihjIHJ3 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9MiIoEh2KmYMHG9ihjIHJ3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Horror</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9b82lVfolmKCygLlQwS2gr -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9b82lVfolmKCygLlQwS2gr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Series"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/RBO43Bpe0CrtuAmJDhF3Vq"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg"/>
+        <untitled-ontology-6:Title>Spaced</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1999</untitled-ontology-6:Year>
+        <rdfs:label>Spaced</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RB207yOO9h3Gv7yw3Mfiw1X -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RB207yOO9h3Gv7yw3Mfiw1X">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:Title>Baby Driver</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2017</untitled-ontology-6:Year>
+        <rdfs:label>Baby Driver</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBO43Bpe0CrtuAmJDhF3Vq -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBO43Bpe0CrtuAmJDhF3Vq">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/R9b82lVfolmKCygLlQwS2gr"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">54</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/British</untitled-ontology-6:Nationality>
+        <rdfs:label>Simon Pegg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R8QEZysOq4M0ahGnHCvzNA3"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/RoHqajuIzC3rvUkGEYblgT"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:Country rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/United_States</untitled-ontology-6:Country>
+        <untitled-ontology-6:Language>English</untitled-ontology-6:Language>
+        <untitled-ontology-6:Title>Pulp Fiction</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1994</untitled-ontology-6:Year>
+        <rdfs:label>Pulp Fiction</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Action</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBaYByBqWDsxG4YPnfAWO5z">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/R0V2rPVJylhI8GsX1IfCoM"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/R8atostOMRkOOicZ5bq88BF"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/R0V2rPVJylhI8GsX1IfCoM"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/R8atostOMRkOOicZ5bq88BF"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/R0V2rPVJylhI8GsX1IfCoM"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/R8atostOMRkOOicZ5bq88BF"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>Paul Thomas Anderson</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>Paul Thomas Anderson</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Crime</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBnAjTZPO6EHgAoS3lfhJD9 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBnAjTZPO6EHgAoS3lfhJD9">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Sci-Fi</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBpG5Jwdt70vezLnKGp9hZ1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/R8QEZysOq4M0ahGnHCvzNA3"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx"/>
+        <untitled-ontology-6:Country rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/United_States</untitled-ontology-6:Country>
+        <untitled-ontology-6:Language>English</untitled-ontology-6:Language>
+        <untitled-ontology-6:Title>Kill Bill (volume 1)</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2003</untitled-ontology-6:Year>
+        <rdfs:label>Kill Bill (volume 1)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RD2NLpGkoXTMXD5Aockux8x -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RD2NLpGkoXTMXD5Aockux8x">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R9MiIoEh2KmYMHG9ihjIHJ3"/>
+        <untitled-ontology-6:hasWriter rdf:resource="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H"/>
+        <untitled-ontology-6:Title>Shaun Of The Dead</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2004</untitled-ontology-6:Year>
+        <rdfs:label>Shaun Of The Dead</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDcLrEroiG4hFTU0qdf45up -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDcLrEroiG4hFTU0qdf45up">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Movie"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Show"/>
+        <untitled-ontology-6:hasActor rdf:resource="http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa"/>
+        <untitled-ontology-6:hasDirector rdf:resource="http://webprotege.stanford.edu/R8ZUc09uM5rZ09sL2wEILa"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/R1VWXOLTLXtGREKyV3zYmU"/>
+        <untitled-ontology-6:hasGenre rdf:resource="http://webprotege.stanford.edu/Rs5oMzas0vv7Y1bshcjjYx"/>
+        <untitled-ontology-6:Title>Jojo Rabbit</untitled-ontology-6:Title>
+        <untitled-ontology-6:Year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2019</untitled-ontology-6:Year>
+        <rdfs:label>Jojo Rabbit</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RoHqajuIzC3rvUkGEYblgT -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RoHqajuIzC3rvUkGEYblgT">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RBTYqSq5MQFCMBUGiu6UtFA"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">59</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Name>John Travolta</untitled-ontology-6:Name>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/American</untitled-ontology-6:Nationality>
+        <rdfs:label>John Travolta</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/Rs5oMzas0vv7Y1bshcjjYx -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rs5oMzas0vv7Y1bshcjjYx">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>War</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RubEbV5NRtaaZs9h9WDKRZ">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Genre"/>
+        <rdfs:label>Thriller</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rzc4rTHKCMirvnkj9BUz3H">
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Director"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Person"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/Writer"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RB207yOO9h3Gv7yw3Mfiw1X"/>
+        <untitled-ontology-6:isActorOf rdf:resource="http://webprotege.stanford.edu/RD2NLpGkoXTMXD5Aockux8x"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/R9b82lVfolmKCygLlQwS2gr"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/RB207yOO9h3Gv7yw3Mfiw1X"/>
+        <untitled-ontology-6:isDirectorOf rdf:resource="http://webprotege.stanford.edu/RD2NLpGkoXTMXD5Aockux8x"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/RB207yOO9h3Gv7yw3Mfiw1X"/>
+        <untitled-ontology-6:isWriterOf rdf:resource="http://webprotege.stanford.edu/RD2NLpGkoXTMXD5Aockux8x"/>
+        <untitled-ontology-6:Age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">48</untitled-ontology-6:Age>
+        <untitled-ontology-6:Gender rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/Male</untitled-ontology-6:Gender>
+        <untitled-ontology-6:Nationality rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://dbpedia.org/page/British</untitled-ontology-6:Nationality>
+        <rdfs:label>Edgar Wright</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,292 @@
+1-List the instances of the class Actor:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?actor_name
+WHERE {
+  ?actor rdf:type :Actor.
+  ?actor rdfs:label ?actor_name.
+}
+
+2-List the instances of the class writer:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?writer_name
+WHERE {
+  ?writer rdf:type :Writer.
+  ?writer rdfs:label ?writer_name.
+}
+
+3-List the instances of the class director:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?director_name
+WHERE {
+  ?director rdf:type :Director.
+  ?director rdfs:label ?director_name.
+}
+
+4-List the name of all Thriller movies. For each one, display its director:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?movie_title ?director_name
+WHERE {
+  ?movie rdf:type :Movie.
+   ?movie rdfs:label ?movie_title.
+  ?movie :hasDirector ?director.
+  ?director rdfs:label ?director_name.
+  ?movie :hasGenre ?movie_genre.
+  ?movie_genre rdfs:label ?genre_label
+  Filter regex (?genre_label , "Thriller").
+}
+
+5-List the name of all Crime Thriller movies.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?movie_title
+WHERE {
+  ?movie rdf:type :Movie.
+  ?movie rdfs:label ?movie_title.
+  ?movie :hasGenre ?genre1.
+  ?genre1 rdfs:label "Crime".
+  ?movie :hasGenre ?genre2.
+  ?genre2 rdfs:label "Thriller".
+}
+
+6-List the male actors in the movie in specific film
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?movie_title (GROUP_CONCAT(?actor_name; separator=", ") AS ?actors)
+WHERE {
+  ?movie rdf:type :Movie.
+  ?movie rdfs:label ?movie_title.
+  ?movie :hasActor ?actor.
+  ?actor :Name ?actor_name.
+  ?actor :Gender "https://dbpedia.org/page/Male".
+}
+GROUP BY ?movie_title
+
+7-How many movies have both "Action" and "Thriller" as genres?
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+
+SELECT (COUNT(DISTINCT ?movie) AS ?numberOfMovies)
+WHERE {
+  ?movie rdf:type :Movie.
+
+  ?movie :hasGenre ?genre1.
+  ?genre1 rdfs:label "Action".
+
+  ?movie :hasGenre ?genre2.
+  ?genre2 rdfs:label "Thriller".
+}
+
+8-List all the movies written by a specific writer
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+
+SELECT ?writer_name (GROUP_CONCAT(?movie_title; separator=", ") AS ?movies)
+WHERE {
+  ?movie rdf:type :Movie.
+  ?movie rdfs:label ?movie_title.
+  ?movie :hasWriter ?writer.
+  ?writer :Name ?writer_name.
+}
+GROUP BY ?writer_name
+
+9-Find movies with a certain language.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+
+SELECT ?movie_title
+WHERE {
+  ?movie rdf:type :Movie.
+  ?movie rdfs:label ?movie_title.
+  ?movie :Language ?movie_lang
+  Filter regex(?movie_lang, "English").
+}
+GROUP BY ?movie_title
+
+10-List the name of Actors older than 51 years
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?actor_name ?age  
+WHERE {
+  ?actor rdf:type :Actor.
+  ?actor rdfs:label ?actor_name.
+  ?actor :Age ?age
+  FILTER ( ?age > 51)
+}
+
+11-Ask if there exists a movie with the title 'Thor: Ragnarok'
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+
+ASK {
+  ?movie rdf:type :Movie ;
+         :Title "Thor: Ragnarok" .
+}
+
+12-Construct a graph where each movie is associated with its genre and title
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+CONSTRUCT {
+  ?movie :hasGenre ?genre .
+  ?movie :Title ?title .}
+WHERE {
+  ?movie rdf:type :Movie ;
+         :hasGenre ?genre ;
+         :Title ?title .
+}
+
+13-Title of each movie and optionally the names of its director and writer.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT ?movieTitle ?directorName ?writerName
+WHERE {
+  ?movie a :Movie.
+  ?movie rdfs:label ?movieTitle.
+  OPTIONAL {
+    ?movie :hasDirector ?director.
+    ?director rdfs:label ?directorName.
+  }
+  OPTIONAL {
+    ?movie :hasWriter ?writer.
+    ?writer rdfs:label ?writerName.
+  }
+}
+
+14-Names of persons who are either actors in a drama movie or directors of an action movie
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+SELECT  DISTINCT ?personName
+WHERE {
+  {
+    ?person rdf:type :Actor.
+    ?person rdfs:label ?personName.
+    ?movie rdf:type :Movie.
+    ?movie :hasActor ?person.
+    ?movie :hasGenre ?genre.
+    ?genre rdfs:label "Drama"
+  } UNION {
+    ?person rdf:type :Director.
+    ?person rdfs:label ?personName.
+    ?movie rdf:type :Movie.
+    ?movie :hasDirector ?person.
+    ?movie :hasGenre ?genre.
+    ?genre rdfs:label "Action"
+  }}
+
+15-Constructs a new data set where actors are linked to the titles of movies they appear in.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+CONSTRUCT {
+  ?actor rdfs:label ?actorName.
+  ?movie rdfs:label ?movieTitle.
+  ?actor :appearsInMovieWithTitle ?movieTitle.
+}
+WHERE {
+  ?movie :hasActor ?actor.
+  ?actor rdfs:label ?actorName.
+  ?movie rdfs:label ?movieTitle.
+}
+
+16-Checks whether there is at least one movie categorized as a comedy in the database.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+ASK {
+  ?movie a :Movie.
+  ?movie :hasGenre ?genre.
+  ?genre rdfs:label "Comedy".
+}
+
+17-Describes all properties and related data of movies classified under the drama genre.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> 
+DESCRIBE ?movie
+WHERE {
+  ?movie a :Movie.
+  ?movie :hasGenre ?genre.
+  ?genre rdfs:label "Drama".
+  ?movie rdfs:label ?movieTitle.
+}
+
+18-All movies that have the word “the” in the title
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+SELECT DISTINCT ?title
+WHERE {
+  {
+    ?entity rdf:type :Show .
+  }
+  UNION
+  {
+    ?entity rdf:type :Movie .
+  }
+  ?entity rdfs:label ?title .
+  FILTER REGEX(?title, "\\bThe\\b", "i")
+}
+
+19-List all movie titles of movies that don’t have awards.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+ 
+SELECT ?title
+WHERE {
+  ?movie rdf:type :Movie .
+  ?movie :Title ?title .
+  FILTER NOT EXISTS {
+    ?movie :hasAward ?award .
+  }
+}
+
+20-Select actors and their ages and order them acsendingly
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+ 
+SELECT ?actor_label ?age
+WHERE {
+  ?actor rdf:type :Actor .
+  ?actor :Age ?age .
+  ?actor rdfs:label ?actor_label .
+}
+ORDER BY ASC(?age)
+
+21-The inner subquery finds all persons who are actors or producers of shows directed by Edgar Wright. The outer query selects the labels of those persons.
+
+PREFIX : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?label
+WHERE {
+  {
+    SELECT DISTINCT ?person
+    WHERE {
+      {
+        ?person :isActorOf ?show .
+      } UNION {
+        ?person :isProducerOf ?show .
+      }
+      ?show :hasDirector ?director .
+      ?director rdfs:label "Edgar Wright" .
+    }
+  }
+  ?person rdfs:label ?label .
+}

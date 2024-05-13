@@ -13,4 +13,4 @@ class SPARQLform(FlaskForm):
     query = TextAreaField('Query', validators=[DataRequired()])
     
 class Movieform(FlaskForm):
-    movie = TextAreaField('Movie  Name:', validators=[DataRequired()])
+    movie = TextAreaField('Movie Name:', validators=[DataRequired()])

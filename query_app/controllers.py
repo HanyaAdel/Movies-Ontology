@@ -264,10 +264,6 @@ def jena5():
     rule_graph = Graph()
     rule_graph.parse(rule_file, format="ttl")
 
-    # Print the content of the rule graph before merging
-    print("Rule Graph Content Before Merging:")
-    print(rule_graph.serialize(format="turtle"))
-
     # Merge the rule graph with the main graph
     graph = graph + rule_graph
 
@@ -425,12 +421,6 @@ def run_query_jena7(query, template):
                            namespaces=NAMESPACES,
                            form=SPARQLform(),
                            results=results)
-
-
-
-
-
-
 
 @app.route("/", methods=["POST"])
 def result_page():

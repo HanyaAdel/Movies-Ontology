@@ -107,20 +107,20 @@ def jena6_1():
     # Rule 1: ActorDirector
     graph.add((onto.ActorDirector, RDF.type, OWL.Class))
     graph.add((onto.ActorDirector, RDFS.subClassOf, onto.Person))
-    graph.add((onto.ActorDirector, OWL.equivalentClass, rdflib.BNode()))
-    graph.add((onto.ActorDirector, RDF.type, OWL.Restriction))
-    graph.add((onto.ActorDirector, OWL.onProperty, onto.isActor))
-    graph.add((onto.ActorDirector, OWL.hasValue, rdflib.Literal(True)))
-    graph.add((onto.ActorDirector, RDF.type, OWL.Restriction))
-    graph.add((onto.ActorDirector, OWL.onProperty, onto.isDirector))
-    graph.add((onto.ActorDirector, OWL.hasValue, rdflib.Literal(True)))
 
-    # Process each person and check if they are both an actor and a director
-    for person in graph.subjects(RDF.type, onto.Person):
-        is_actor = (person, onto.isActor, rdflib.Literal(True)) in graph
-        is_director = (person, onto.isDirector, rdflib.Literal(True)) in graph
-        if is_actor and is_director:
-            graph.add((person, RDF.type, onto.ActorDirector))
+    # Create a blank node for intersection and ensure the intersection is properly constructed
+    intersection = rdflib.BNode()
+    list_actor = rdflib.BNode()
+    list_director = rdflib.BNode()
+
+    graph.add((intersection, RDF.type, OWL.Class))
+    graph.add((intersection, OWL.intersectionOf, list_actor))
+    graph.add((list_actor, RDF.first, onto.Actor))
+    graph.add((list_actor, RDF.rest, list_director))
+    graph.add((list_director, RDF.first, onto.Director))
+    graph.add((list_director, RDF.rest, RDF.nil))
+
+    graph.add((onto.ActorDirector, OWL.equivalentClass, intersection))
 
     # Apply reasoning
     owlrl.DeductiveClosure(owlrl.OWLRL_Semantics, datatype_axioms=False).expand(graph)

@@ -4,4 +4,7 @@
 @prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/> .
 
 :ActorDirector a owl:Class ;
-    rdfs:subClassOf :Actor, :Director .
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (:Actor :Director)
+    ] .

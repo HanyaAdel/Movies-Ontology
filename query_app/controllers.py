@@ -306,9 +306,10 @@ def getIndividuals(individualsClass):
         else:
             label = "No label found"
 
-        result.append({'inidividual': individual, 'label': label})
+        result.append({'individual': individual, 'label': label})
     
     return result
+
 
 @app.route("/jena7", methods=["GET"])
 def jena7():
@@ -320,35 +321,33 @@ def jena7():
     actors = getIndividuals(onto.Actor)
     genre = getIndividuals(onto.Genre)
 
-    print(actors)
+    return render_jena7_home(actors, directors, genre)
 
-    #TODO display those lists in the UI
 
-    return show_result(results=[], template="jena3.html") #TODO new template needed
-
-@app.route("/jena8", methods=["GET"])
+@app.route("/jena7", methods=["POST"])
 def jena7Results():
     DeductiveClosure(owlrl.OWLRL_Semantics).expand(graph)
 
     actors = {
-        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx')],
-        "exclude":[]
+        'include': request.form.getlist('include_actors'),
+        'exclude': request.form.getlist('exclude_actors')
     }
     directors = {
-        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/R8iJLOBHKGJAl537mt9QePx')],
-        "exclude":[]
+        'include': request.form.getlist('include_directors'),
+        'exclude': request.form.getlist('exclude_directors')
     }
     genres = {
-        "include":[rdflib.term.URIRef('http://webprotege.stanford.edu/RBip9IYyVTRBaeZruOe3lSb')],
-        "exclude":[rdflib.term.URIRef('http://webprotege.stanford.edu/RBXDmexPRMYRH61rDLkiHZg')]
+        'include': request.form.getlist('include_genres'),
+        'exclude': request.form.getlist('exclude_genres')
     }
 
-    actors_include_list = " ".join([f"<{individual}>" for individual in actors["include"]])
-    actors_exclude_list = " ".join([f"<{individual}>" for individual in actors["exclude"]])
-    directors_include_list = " ".join([f"<{individual}>" for individual in directors["include"]])
-    directors_exclude_list = " ".join([f"<{individual}>" for individual in directors["exclude"]])
-    genres_include_list = " ".join([f"<{individual}>" for individual in genres["include"]])
-    genres_exclude_list = " ".join([f"<{individual}>" for individual in genres["exclude"]])
+    actors_include_list = ",".join([f"<{individual}>" for individual in actors["include"]])
+    actors_exclude_list = ",".join([f"<{individual}>" for individual in actors["exclude"]])
+    directors_include_list = ",".join([f"<{individual}>" for individual in directors["include"]])
+    directors_exclude_list = ",".join([f"<{individual}>" for individual in directors["exclude"]])
+    genres_include_list = ",".join([f"<{individual}>" for individual in genres["include"]])
+    genres_exclude_list = ",".join([f"<{individual}>" for individual in genres["exclude"]])
+    
     query = f"""
     prefix : <http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/>
     SELECT 
@@ -364,8 +363,8 @@ def jena7Results():
         ?show :hasGenre ?genre.
 
         ?show rdfs:label ?show_name.
-        ?actor :Name ?actor_name.
-        ?director :Name ?director_name.
+        ?actor rdfs:label ?actor_name.
+        ?director rdfs:label ?director_name.
         ?genre rdfs:label ?genre_name.
 
         FILTER EXISTS {{
@@ -395,8 +394,43 @@ def jena7Results():
     }}
     GROUP BY ?show_name
     """
+    onto = rdflib.Namespace("http://www.semanticweb.org/adham/ontologies/2024/4/untitled-ontology-6/")
+    directors = getIndividuals(onto.Director)
+    actors = getIndividuals(onto.Actor)
+    genre = getIndividuals(onto.Genre)
 
-    return run_query(query=query, template="jena3.html")
+    return render_jena7_home(actors, directors, genre) + run_query_jena7(query, "jena7_1.html")
+
+
+def render_jena7_home(actors, directors, genres):
+    return render_template("jena7_1.html",
+        namespaces=NAMESPACES,
+        form=SPARQLform(),
+        actors=actors,
+        directors=directors,
+        genres=genres
+)
+
+
+def run_query_jena7(query, template):
+    try:
+        results = graph.query(query)
+    except Exception as e:
+        flash("Could not run that query.")
+        flash("RDFLIB Error: {}".format(e))
+        sparql_validate(query)
+        return home_page()
+    return render_template("jena7_3.html",
+                           base_template=template,
+                           namespaces=NAMESPACES,
+                           form=SPARQLform(),
+                           results=results)
+
+
+
+
+
+
 
 @app.route("/", methods=["POST"])
 def result_page():

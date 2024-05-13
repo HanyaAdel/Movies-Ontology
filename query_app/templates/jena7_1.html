@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link href="{{ url_for('static', filename='css/blog.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">Ontologies Project Part 5</h1>
+{% include "jena7_2.html" %}
+</div>
+{% endblock %}

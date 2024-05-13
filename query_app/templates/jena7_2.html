@@ -1,0 +1,126 @@
+<div class="container">
+    <form method="POST" action="/jena7" class="form" role="form">
+        {{ form.csrf_token }}
+        <br>
+
+        <div id="include_actors" class="dropdown-checklist">
+            <span class="anchor">Include Actors</span>
+            <ul class="items">
+                {% for dict in actors %}
+                <li>
+                    <input type="checkbox" name="include_actors" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="exclude_actors" class="dropdown-checklist">
+            <span class="anchor">Exclude Actors</span>
+            <ul class="items">
+                {% for dict in actors %}
+                <li>
+                    <input type="checkbox" name="exclude_actors" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <br><br>
+
+        <div id="include_directors" class="dropdown-checklist">
+            <span class="anchor">Include Directors</span>
+            <ul class="items">
+                {% for dict in directors %}
+                <li>
+                    <input type="checkbox" name="include_directors" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="exclude_directors" class="dropdown-checklist">
+            <span class="anchor">Exclude Directors</span>
+            <ul class="items">
+                {% for dict in directors %}
+                <li>
+                    <input type="checkbox" name="exclude_directors" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <br><br>
+
+        <div id="include_genres" class="dropdown-checklist">
+            <span class="anchor">Include Genres</span>
+            <ul class="items">
+                {% for dict in genres %}
+                <li>
+                    <input type="checkbox" name="include_genres" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="exclude_genres" class="dropdown-checklist">
+            <span class="anchor">Exclude Genres</span>
+            <ul class="items">
+                {% for dict in genres %}
+                <li>
+                    <input type="checkbox" name="exclude_genres" value="{{dict['individual']}}"/> {{dict['label']}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <br><br>
+        <input class="btn btn-primary" type="submit" value="Submit">
+   </form>
+</div>
+
+
+<script>
+    var include_actors = document.getElementById('include_actors');
+    var include_genres = document.getElementById('include_genres');
+    var include_directors = document.getElementById('include_directors');
+
+    var exclude_actors = document.getElementById('exclude_actors');
+    var exclude_genres = document.getElementById('exclude_genres');
+    var exclude_directors = document.getElementById('exclude_directors');
+
+    include_actors.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (include_actors.classList.contains('visible'))
+        include_actors.classList.remove('visible');
+    else
+        include_actors.classList.add('visible');
+    }
+    exclude_actors.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (exclude_actors.classList.contains('visible'))
+        exclude_actors.classList.remove('visible');
+    else
+        exclude_actors.classList.add('visible');
+    }
+
+    include_genres.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (include_genres.classList.contains('visible'))
+        include_genres.classList.remove('visible');
+    else
+        include_genres.classList.add('visible');
+    }
+    exclude_genres.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (exclude_genres.classList.contains('visible'))
+        exclude_genres.classList.remove('visible');
+    else
+        exclude_genres.classList.add('visible');
+    }
+
+    include_directors.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (include_directors.classList.contains('visible'))
+        include_directors.classList.remove('visible');
+    else
+        include_directors.classList.add('visible');
+    }
+    exclude_directors.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (exclude_directors.classList.contains('visible'))
+        exclude_directors.classList.remove('visible');
+    else
+        exclude_directors.classList.add('visible');
+    }
+</script>
